@@ -1,15 +1,27 @@
+import axios from 'axios'
 import React from 'react'
+import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-const Home = () => {
-  return (
-    <>
-    <div>Welcome!</div>
-    <div>
-      <Link to={"/product/:id"}>Click Here to view products</Link>
-    </div>
+import '../Index.css'
 
-    </>
+export default function Home() {
+    const [list, setList]=useState([])
+    useEffect(()=>{
+        axios
+            .get('https://fakestoreapi.com/products/')
+            .then((event)=>setList(event.data))
+    },[])
+  return (
+    <div className='align'>
+        {
+            list.map((data)=>(
+               <div>
+                    <img className="image" src={data.image} alt=""></img><br/>
+                    <h3>{data.title}</h3>
+                    <Link to={"/product/"+data.id} >More Info</Link>
+               </div> 
+            ))
+        }
+    </div>
   )
 }
-
-export default Home
