@@ -1,27 +1,13 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import Home from './Home'
-import ProductDetails from './ProductDetails'
-const Navbar = ({id,auth}) => {
+import { Link } from 'react-router-dom'
+const Navbar = () => {
   return (
-    <>
     <div className="nav">
-        <span>
-            <Link to={"/"} key={id} onClick={<ProductDetails/>}>Home</Link>
-        </span>
-        <span>
-            <Link to={"/login"} key={id} onClick={<Home/>}>Login</Link>
-        </span>
-        <span style={{fontSize:"20px"}}>
-            User Logged In : {auth?<>Yes</>:<>No</>}
-        </span>
-        <span>
-            {auth?<button >Logout</button>:<button disabled="true">Logout</button>}
-            
-        </span>
+        <span><Link to="/home">Home</Link></span>
+        <span><Link to="/">Login</Link></span>
+        <span>User Logged In : No</span>
+        <span><button disabled="true">Logout</button></span>
     </div>
-    
-    </>
   )
 }
 

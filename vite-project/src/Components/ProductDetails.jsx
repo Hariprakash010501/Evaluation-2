@@ -1,29 +1,24 @@
 import React from 'react'
-import { useState } from 'react';
-import { SingleCard } from './SingleCard';
-import {useParams} from 'react-router-dom'
 import axios from 'axios';
-const ProductDetails = () => {
-    const [info,setInfo]=useState({});
-    const params=useParams();
-    useEffect=(()=>{
-        getData ();
-    },[]);
-    const getData=async()=>{
-        try{
-            let reqres=await axios.get('https://fakestoreapi.com/products');
-            let info=await reqres.json()
-            setInfo(res.info);
-        }   
-        catch(e){
-        }
-    }
+import '../Index.css'
+import {  useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom';
+const ProductDetails=()=>{
+    const [more, setMore] = useState({});
+    const { id } = useParams();
+    useEffect(() => {
+        axios
+          .get("https://fakestoreapi.com/products/" + id)
+          .then((event) => setMore(event.data))
+      }, []);
   return (
-    <div>{data.map((e)=>{
-        return <SingleCard {...e} key={e.id}/>;
-    })}
-    </div>
-  );
+        <div className='productdetails'>
+                <img src={more.image} alt="" className="size"></img>
+                <h3>{more.title}</h3>
+                <h3>DESCRIPTION : {more.description}</h3>
+                <h3>CATEGORY : {more.category}</h3>
+                <h3>PRICE : {more.price}</h3>
+        </div>
+  )
 }
-
 export default ProductDetails
