@@ -5,13 +5,14 @@ import Home from "../Components/Home"
 import Login from '../Components/Login'
 import ProductDetails from '../Components/ProductDetails'
 import ErrorMessage from '../Components/ErrorMessage'
+import PrivateRoute from '../PrivateRoute'
 export const MainRoutes = () => {
   return (
     <div>
         <Navbar/>
         <Routes>
-            <Route path="/home" element={<Home/>}/>
-            <Route path="/" element={<Login/>}/>
+            <Route path="/" element={<PrivateRoute><Home/></PrivateRoute>}/>
+            <Route path="/login" element={<Login/>}/>
             <Route path="/product/:id" element={<ProductDetails/>}/>
             <Route path="*" element={<ErrorMessage/>}/>
         </Routes>
