@@ -8,7 +8,7 @@ import { ContextProvider } from './Contexts/Context'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter> 
-    <AuthContextProvider><App /></AuthContextProvider>
+    <ContextProvider><App /></ContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
 )
