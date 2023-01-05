@@ -1,14 +1,21 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-const Navbar = () => {
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Context } from "../Context";
+export default function Navbar() {
+  const handClick = () => {
+    window.location.reload();
+  };
+  const { isAuth } = useContext(Context);
   return (
     <div className="nav">
-        <span><Link to="/home">Home</Link></span>
-        <span><Link to="/">Login</Link></span>
-        <span>User Logged In : No</span>
-        <span><button disabled="true">Logout</button></span>
+      <Link to="/">Home</Link>
+      <Link to="/login">Login</Link>
+      <p>User Logged In : {isAuth.token ? <>Yes </>: <>No</>}</p>
+      {isAuth.token ? (
+        <button onClick={handClick}>Logout</button>
+      ) : (
+        <button disabled="true">Logout</button>
+      )}
     </div>
-  )
+  );
 }
-
-export default Navbar
